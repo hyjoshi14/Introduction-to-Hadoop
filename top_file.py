@@ -1,5 +1,6 @@
 from mrjob.job import MRJob
 from mrjob.step import MRStep
+import pprint
 
 class FilePath(MRJob):
     def mapper(self,_,line):
@@ -27,7 +28,7 @@ class FilePath(MRJob):
             files.append(data['file'])
             counts.append(data['count'])
         FileCountList = zip(files,counts)
-        print sorted(FileCountList, key = lambda x: x[-1], reverse = True)[:20]
+        pprint.pprint(sorted(FileCountList, key = lambda x: x[-1], reverse = True)[:20])
 
     def steps(self):
         return[
